@@ -18,7 +18,6 @@ import {
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavProjects } from "@/components/sidebar/nav-projects";
 import { NavUser } from "@/components/sidebar/nav-user";
-import { TeamSwitcher } from "@/components/sidebar/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -37,9 +36,9 @@ const data = {
       "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png",
   },
   company: {
-    name: "Acme Inc",
+    name: "Keyhole Group",
     logo: ChartArea,
-    plan: "Enterprise",
+    plan: "Dashboard",
   },
 
   navMain: [
