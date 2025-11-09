@@ -130,7 +130,10 @@ export default function ChartAreaBreakdown({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <ChartContainer config={chartConfig} className="h-[300px]">
+        <ChartContainer
+          config={chartConfig}
+          className="h-[250px] sm:h-[300px] w-full"
+        >
           <RechartsAreaChart data={data}>
             <defs>
               {areas.map((area) => (

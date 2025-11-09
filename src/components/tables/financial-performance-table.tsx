@@ -56,71 +56,73 @@ export default function FinancialPerformanceTable({
       : "0.0";
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>
-            {periodLabel.charAt(0).toUpperCase() + periodLabel.slice(1)}
-          </TableHead>
-          <TableHead className="text-right">Revenue</TableHead>
-          <TableHead className="text-right">COGS</TableHead>
-          <TableHead className="text-right">Gross Profit</TableHead>
-          <TableHead className="text-right">Operating Expenses</TableHead>
-          <TableHead className="text-right">Net Income</TableHead>
-          <TableHead className="text-right">Profit Margin</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {data.map((item) => {
-          const grossProfit = calculateGrossProfit(item.revenue, item.cogs);
-          const profitMargin = calculateProfitMargin(
-            item.netIncome,
-            item.revenue
-          );
-          const periodKey = item[periodLabel] as string;
+    <div className="overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>
+              {periodLabel.charAt(0).toUpperCase() + periodLabel.slice(1)}
+            </TableHead>
+            <TableHead className="text-right">Revenue</TableHead>
+            <TableHead className="text-right">COGS</TableHead>
+            <TableHead className="text-right">Gross Profit</TableHead>
+            <TableHead className="text-right">Operating Expenses</TableHead>
+            <TableHead className="text-right">Net Income</TableHead>
+            <TableHead className="text-right">Profit Margin</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((item) => {
+            const grossProfit = calculateGrossProfit(item.revenue, item.cogs);
+            const profitMargin = calculateProfitMargin(
+              item.netIncome,
+              item.revenue
+            );
+            const periodKey = item[periodLabel] as string;
 
-          return (
-            <TableRow key={periodKey}>
-              <TableCell className="font-medium">{periodKey}</TableCell>
-              <TableCell className="text-right">
-                {formatCurrency(item.revenue)}
-              </TableCell>
-              <TableCell className="text-right">
-                {formatCurrency(item.cogs)}
-              </TableCell>
-              <TableCell className="text-right font-medium">
-                {formatCurrency(grossProfit)}
-              </TableCell>
-              <TableCell className="text-right">
-                {formatCurrency(item.operatingExpenses)}
-              </TableCell>
-              <TableCell className="text-right font-bold text-green-600">
-                {formatCurrency(item.netIncome)}
-              </TableCell>
-              <TableCell className="text-right">{profitMargin}%</TableCell>
-            </TableRow>
-          );
-        })}
-        <TableRow className="bg-muted/50 font-bold">
-          <TableCell>Total</TableCell>
-          <TableCell className="text-right">
-            {formatCurrency(totalRevenue)}
-          </TableCell>
-          <TableCell className="text-right">
-            {formatCurrency(totalCogs)}
-          </TableCell>
-          <TableCell className="text-right">
-            {formatCurrency(totalGrossProfit)}
-          </TableCell>
-          <TableCell className="text-right">
-            {formatCurrency(totalOperatingExpenses)}
-          </TableCell>
-          <TableCell className="text-right text-green-600">
-            {formatCurrency(totalNetIncome)}
-          </TableCell>
-          <TableCell className="text-right">{totalProfitMargin}%</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+            return (
+              <TableRow key={periodKey}>
+                <TableCell className="font-medium">{periodKey}</TableCell>
+                <TableCell className="text-right">
+                  {formatCurrency(item.revenue)}
+                </TableCell>
+                <TableCell className="text-right">
+                  {formatCurrency(item.cogs)}
+                </TableCell>
+                <TableCell className="text-right font-medium">
+                  {formatCurrency(grossProfit)}
+                </TableCell>
+                <TableCell className="text-right">
+                  {formatCurrency(item.operatingExpenses)}
+                </TableCell>
+                <TableCell className="text-right font-bold text-green-600">
+                  {formatCurrency(item.netIncome)}
+                </TableCell>
+                <TableCell className="text-right">{profitMargin}%</TableCell>
+              </TableRow>
+            );
+          })}
+          <TableRow className="bg-muted/50 font-bold">
+            <TableCell>Total</TableCell>
+            <TableCell className="text-right">
+              {formatCurrency(totalRevenue)}
+            </TableCell>
+            <TableCell className="text-right">
+              {formatCurrency(totalCogs)}
+            </TableCell>
+            <TableCell className="text-right">
+              {formatCurrency(totalGrossProfit)}
+            </TableCell>
+            <TableCell className="text-right">
+              {formatCurrency(totalOperatingExpenses)}
+            </TableCell>
+            <TableCell className="text-right text-green-600">
+              {formatCurrency(totalNetIncome)}
+            </TableCell>
+            <TableCell className="text-right">{totalProfitMargin}%</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 }

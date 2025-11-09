@@ -19,21 +19,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  Area,
-  AreaChart,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from "recharts";
 import ChartAreaBreakdown, {
   type AreaConfig,
 } from "@/components/charts/chart-area-breakdown";
+import RevenueExpensesChart from "@/components/charts/revenue-expenses-chart";
+import ProfitChart from "@/components/charts/profit-chart";
 import ProfitLossTable from "@/components/tables/profit-loss-table";
 import BalanceSheetTable from "@/components/tables/balance-sheet-table";
 import FinancialPerformanceTable from "@/components/tables/financial-performance-table";
@@ -363,139 +354,21 @@ export default function FinanceIndex() {
           />
         </div>
 
-        <div className="flex flex-row gap-5">
-          <Card>
-            <CardHeader>
-              <CardTitle>Revenue vs Expenses Trend</CardTitle>
-              <CardDescription>
-                {getTimeRangeLabel()} comparison
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer
-                config={{
-                  revenue: {
-                    label: "Revenue",
-                    color: "#3b82f6",
-                  },
-                  totalExpenses: {
-                    label: "Total Expenses",
-                    color: "#ef4444",
-                  },
-                }}
-                className="h-[300px]"
-              >
-                <LineChart
-                  data={displayData.map(
-                    (d: {
-                      cogs: number;
-                      operatingExpenses: number;
-                      [key: string]: unknown;
-                    }) => ({
-                      ...d,
-                      totalExpenses: d.cogs + d.operatingExpenses,
-                    })
-                  )}
-                >
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    className="stroke-muted"
-                  />
-                  <XAxis dataKey={periodLabel} className="text-xs" />
-                  <YAxis
-                    className="text-xs"
-                    tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                  />
-                  <ChartTooltip
-                    content={<ChartTooltipContent />}
-                    formatter={(value) => formatCurrency(Number(value))}
-                  />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="revenue"
-                    stroke="#3b82f6"
-                    strokeWidth={2}
-                    name="Revenue"
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="totalExpenses"
-                    stroke="#ef4444"
-                    strokeWidth={2}
-                    name="Total Expenses"
-                  />
-                </LineChart>
-              </ChartContainer>
-            </CardContent>
-          </Card>
+        {/* Charts Section */}
+        <div className="grid gap-6 lg:grid-cols-3">
+          <RevenueExpensesChart
+            data={displayData}
+            periodLabel={periodLabel}
+            description={getTimeRangeLabel() + " comparison"}
+          />
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {/* Monthly Profit Chart */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Profit Trend</CardTitle>
-                <CardDescription>Net income by {periodLabel}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer
-                  config={{
-                    netIncome: {
-                      label: "Net Income",
-                      color: "hsl(var(--chart-3))",
-                    },
-                  }}
-                  className="h-[250px]"
-                >
-                  <AreaChart data={displayData}>
-                    <defs>
-                      <linearGradient
-                        id="fillProfit"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1"
-                      >
-                        <stop
-                          offset="5%"
-                          stopColor="hsl(var(--chart-3))"
-                          stopOpacity={0.8}
-                        />
-                        <stop
-                          offset="95%"
-                          stopColor="hsl(var(--chart-3))"
-                          stopOpacity={0.1}
-                        />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid
-                      strokeDasharray="3 3"
-                      className="stroke-muted"
-                    />
-                    <XAxis dataKey={periodLabel} className="text-xs" />
-                    <YAxis
-                      className="text-xs"
-                      tickFormatter={(value) =>
-                        `$${(value / 1000).toFixed(0)}k`
-                      }
-                    />
-                    <ChartTooltip
-                      content={<ChartTooltipContent />}
-                      formatter={(value) => formatCurrency(Number(value))}
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="netIncome"
-                      stroke="hsl(var(--chart-3))"
-                      fill="url(#fillProfit)"
-                    />
-                  </AreaChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Profit Trend Chart */}
+          <ProfitChart
+            data={displayData}
+            periodLabel={periodLabel}
+            description={"Net income by " + periodLabel}
+          />
         </div>
-        {/* Revenue vs Expenses Chart */}
 
         {/* Monthly Financial Performance Table */}
         <Card>
@@ -528,7 +401,7 @@ export default function FinanceIndex() {
                 investing: { label: "Investing", color: "hsl(var(--chart-2))" },
                 financing: { label: "Financing", color: "hsl(var(--chart-3))" },
               }}
-              className="h-[300px]"
+              className="h-[250px] sm:h-[300px] w-full"
             >
               <BarChart data={cashFlowData}>
                 <CartesianGrid strokeDasharray="3 3" />
