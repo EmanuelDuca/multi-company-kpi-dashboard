@@ -8,7 +8,6 @@ import {
   Building2,
   Wallet,
 } from "lucide-react";
-import { keyholeLogo } from "../../../public/keyhole-logo.jpeg";
 
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavProjects } from "@/components/sidebar/nav-projects";
@@ -110,17 +109,17 @@ const data = {
     {
       name: "Keyhole",
       url: "/finance/keyhole",
-      icon: keyholeLogo,
+      icon: Building2,
     },
     {
       name: "Payproff",
       url: "/finance/payproff",
-      icon: keyholeLogo,
+      icon: Building2,
     },
     {
       name: "Intercode",
       url: "/finance/intercode",
-      icon: keyholeLogo,
+      icon: Building2,
     },
   ],
   dashboards: [
