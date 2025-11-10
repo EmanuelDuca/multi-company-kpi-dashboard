@@ -431,7 +431,7 @@ export default function FinanceIndex() {
       </div>
 
       {/* Banking Financial Statements Section */}
-      <div className="px-4">
+      <div className="w-full px-4">
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4">
             Banking Financial Statements
@@ -512,7 +512,6 @@ export default function FinanceIndex() {
 
         {/* Income and Expense Breakdown Charts */}
         <div className="grid gap-6 md:grid-cols-2 mb-6">
-          {/* Income Breakdown */}
           <ChartAreaBreakdown
             title="Income Breakdown"
             description="Total Operating Income: €455,635k"
@@ -521,7 +520,6 @@ export default function FinanceIndex() {
             areas={incomeAreas}
           />
 
-          {/* Expense Breakdown */}
           <ChartAreaBreakdown
             title="Operating Expenses Breakdown"
             description="Total Operating Expenses: €393,243k"
@@ -533,7 +531,6 @@ export default function FinanceIndex() {
 
         {/* Asset and Liability Composition */}
         <div className="grid gap-6 md:grid-cols-2 mb-6">
-          {/* Asset Composition */}
           <ChartAreaBreakdown
             title="Asset Composition"
             description="Total Assets: €23,837,107k"
@@ -542,7 +539,6 @@ export default function FinanceIndex() {
             areas={assetAreas}
           />
 
-          {/* Liability Composition */}
           <ChartAreaBreakdown
             title="Liability & Equity Composition"
             description="Total: €23,837,107k"

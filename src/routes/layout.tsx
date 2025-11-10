@@ -1,19 +1,6 @@
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
-import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 
 const SIDEBAR_STATE_KEY = "sidebar:state";

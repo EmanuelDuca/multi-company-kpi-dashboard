@@ -2,18 +2,13 @@
 
 import * as React from "react";
 import {
-  AudioWaveform,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
   PieChart,
-  Settings2,
   ChartNoAxesColumn,
   ChartArea,
   Building2,
   Wallet,
 } from "lucide-react";
+import { keyholeLogo } from "../../../public/keyhole-logo.jpeg";
 
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavProjects } from "@/components/sidebar/nav-projects";
@@ -26,6 +21,7 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { NavDashboards } from "./nav-dashboard";
 
 // This is sample data.
 const data = {
@@ -114,17 +110,34 @@ const data = {
     {
       name: "Keyhole",
       url: "/finance/keyhole",
-      icon: Building2,
+      icon: keyholeLogo,
     },
     {
       name: "Payproff",
       url: "/finance/payproff",
-      icon: Building2,
+      icon: keyholeLogo,
     },
     {
       name: "Intercode",
       url: "/finance/intercode",
-      icon: Building2,
+      icon: keyholeLogo,
+    },
+  ],
+  dashboards: [
+    {
+      name: "Finance",
+      url: "/finance",
+      icon: Wallet,
+    },
+    {
+      name: "Marketing",
+      url: "/marketing",
+      icon: ChartNoAxesColumn,
+    },
+    {
+      name: "Reports",
+      url: "/reports",
+      icon: PieChart,
     },
   ],
 };
@@ -147,7 +160,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {/* <NavMain items={data.navMain} /> */}
+        <NavDashboards items={data.dashboards} />
         <NavProjects projects={data.companies} />
       </SidebarContent>
       <SidebarFooter>

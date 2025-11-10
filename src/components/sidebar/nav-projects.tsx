@@ -3,6 +3,7 @@
 import {
   Folder,
   Forward,
+  icons,
   MoreHorizontal,
   Trash2,
   type LucideIcon,
@@ -46,6 +47,7 @@ export function NavProjects({
             <SidebarMenuButton asChild>
               <Link to={item.url}>
                 <item.icon />
+                <img src={item.icon} />
                 <span>{item.name}</span>
               </Link>
             </SidebarMenuButton>
