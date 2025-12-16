@@ -1,6 +1,7 @@
 // Banking Financial Data - Based on Revolut Bank UAB Report (EUR thousands)
 
 export interface ProfitLossStatement {
+  [key: string]: string | number;
   period: string;
   interestIncome: number;
   interestExpense: number;
@@ -24,6 +25,7 @@ export interface ProfitLossStatement {
 }
 
 export interface BalanceSheet {
+  [key: string]: string | number;
   period: string;
   // Assets
   cashAndCentralBanks: number;

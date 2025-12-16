@@ -3,7 +3,6 @@
 import {
   Folder,
   Forward,
-  icons,
   MoreHorizontal,
   Trash2,
   type LucideIcon,
